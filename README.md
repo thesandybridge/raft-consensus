@@ -26,3 +26,12 @@ This is a learning implementation, not production-ready:
 - Network is simulated via channels, not real I/O
 
 ## Running
+```bash
+cargo run
+```
+
+Creates a 3-node cluster. You should see one node win election within ~200-300ms.
+
+## Learning Notes
+
+Built this to understand distributed consensus from first principles. Used Claude as a guide for structure and debugging, but implemented the protocol logic by working through the paper's state machine descriptions and RPC handlers.
