@@ -1,0 +1,22 @@
+name: Trigger Site WASM Rebuild
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dispatch to sandybridge.io
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.SANDYBRIDGE_DISPATCH_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/thesandybridge/sandybridge.io/dispatches \
+            -d '{"event_type": "raft-updated"}'
